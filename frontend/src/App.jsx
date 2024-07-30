@@ -1,10 +1,15 @@
 import { useState, useContext } from 'react'
 import './App.css';
-import { CounterContext } from './context/ContextApi';
+// import { CounterContext } from './context/ContextApi';
+import { increament , reset , decreament } from "./store/counterSlice";
+import { useSelector, useDispatch } from "react-redux"
+
 
 function App() {
   // const [count, setCount] = useState(0)
-  const { count, setCount } = useContext(CounterContext); 
+  // const { count, setCount } = useContext(CounterContext); 
+  const dispatch = useDispatch();
+  const { count } = useSelector((state) => state.counter)
 
   return (
     <>
@@ -12,7 +17,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => dispatch(increament())}>
           count is {count}
         </button>
         <p>
